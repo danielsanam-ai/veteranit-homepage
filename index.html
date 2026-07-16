@@ -871,6 +871,27 @@ footer {
   color: var(--gray);
   flex: 1;
 }
+.tv-screenshot {
+  position: relative;
+  margin-bottom: 60px;
+}
+.tv-screenshot img {
+  width: 100%;
+  display: block;
+  border: 1px solid var(--border);
+  filter: brightness(0.95) contrast(1.05);
+}
+.tv-screenshot-tag {
+  position: absolute;
+  top: 16px; left: 16px;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  padding: 8px 16px;
+  font-family: var(--ff-mono);
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  color: var(--cyan);
+}
 @media (max-width: 900px) {
   .tapevault { padding: 80px 28px; }
   .tv-header { flex-direction: column; align-items: flex-start; }
@@ -1240,6 +1261,11 @@ nav {
       <p class="sec-desc">베테랑아이티가 직접 개발한 Windows 전용 LTO 테이프 아카이브 관리 솔루션. 복잡한 테이프 관리를 직관적인 GUI로 간편하게.</p>
     </div>
     <a href="https://danielsanam-ai.github.io/tapevault" class="btn-primary" target="_top" style="align-self:flex-start;white-space:nowrap;">공식 홈페이지 →</a>
+  </div>
+
+  <div class="tv-screenshot">
+    <span class="tv-screenshot-tag">// TAPEVAULT UI</span>
+    <img src="./img/screen-app.png" alt="TapeVault 실행 화면 - 테이프 아카이브 관리 화면">
   </div>
 
   <div class="tv-grid">
