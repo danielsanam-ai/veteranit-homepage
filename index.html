@@ -679,40 +679,99 @@ section { position: relative; overflow: hidden; }
   padding: 120px 60px;
   background: var(--bg2);
 }
-.sw-grid {
+.mam-head {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 48px;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 64px;
+  align-items: center;
   margin-top: 60px;
 }
-.sw-card {
+.mam-img { position: relative; }
+.mam-img img {
+  width: 100%;
+  display: block;
+  clip-path: polygon(0 0,calc(100% - 16px) 0,100% 16px,100% 100%,16px 100%,0 calc(100% - 16px));
+  filter: brightness(0.92);
+}
+.mam-img::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  background: linear-gradient(135deg, var(--cyan) 0%, transparent 40%);
+  clip-path: polygon(0 0,calc(100% - 16px) 0,100% 16px,100% 100%,16px 100%,0 calc(100% - 16px));
+  z-index: -1;
+}
+.mam-name {
+  font-family: var(--ff-head);
+  font-size: clamp(32px, 3.4vw, 44px);
+  line-height: 1.1;
+  margin: 8px 0 16px;
+}
+.mam-lead {
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 1.9;
+  color: var(--gray);
+  margin-bottom: 28px;
+}
+.mam-keys {
   display: grid;
-  grid-template-columns: auto 1fr;
-  gap: 28px;
-  align-items: start;
-  padding: 36px;
+  grid-template-columns: repeat(3, 1fr);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 32px;
+}
+.mam-key { padding: 18px 16px 18px 0; }
+.mam-key + .mam-key { padding-left: 16px; border-left: 1px solid var(--border); }
+.mam-key-n {
+  font-family: var(--ff-mono);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--cyan);
+  margin-bottom: 4px;
+}
+.mam-key-l { font-size: 11px; line-height: 1.6; color: rgba(255,255,255,0.45); }
+.mam-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  margin-top: 64px;
+}
+.mam-feat {
   background: var(--bg3);
   border: 1px solid var(--border);
+  padding: 28px 26px;
   transition: border-color .2s;
 }
-.sw-card:hover { border-color: var(--cyan); }
-.sw-card:only-child { grid-column: 1 / -1; }
-.sw-img {
-  width: 120px;
-  height: 80px;
-  object-fit: contain;
-  filter: brightness(0.9);
+.mam-feat:hover { border-color: var(--cyan); }
+.mam-feat-n {
+  font-family: var(--ff-mono);
+  font-size: 10px;
+  color: var(--cyan);
+  opacity: 0.6;
+  margin-bottom: 10px;
 }
-.sw-name {
-  font-family: var(--ff-head);
-  font-size: 20px;
+.mam-feat-t {
+  font-family: var(--ff-mono);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
   margin-bottom: 8px;
 }
-.sw-desc {
-  font-size: 12.5px;
-  font-weight: 300;
-  line-height: 1.75;
-  color: var(--gray);
+.mam-feat-d { font-size: 12.5px; font-weight: 300; line-height: 1.8; color: var(--gray); }
+.mam-uses {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-top: 32px;
+}
+.mam-uses-l {
+  font-family: var(--ff-mono);
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  color: rgba(255,255,255,0.35);
+  margin-right: 8px;
 }
 
 /* ═══════════════════════════════
@@ -1058,9 +1117,11 @@ footer {
   .products-grid { grid-template-columns: 1fr; }
   .products-header { flex-direction: column; align-items: flex-start; gap: 24px; }
   .delivery-grid { grid-template-columns: repeat(2,1fr); }
-  .sw-grid { grid-template-columns: 1fr; padding: 80px 28px; }
   .software { padding: 80px 28px; }
-  .sw-card { grid-template-columns: 1fr; }
+  .mam-head { grid-template-columns: 1fr; gap: 36px; margin-top: 40px; }
+  .mam-grid { grid-template-columns: 1fr; margin-top: 40px; }
+  .mam-keys { grid-template-columns: 1fr; }
+  .mam-key + .mam-key { padding-left: 0; border-left: none; border-top: 1px solid var(--border); }
   .footer { grid-template-columns: 1fr; padding: 40px 28px; }
   .footer-right { align-items: flex-start; }
   .delivery { padding: 80px 28px; }
@@ -1440,16 +1501,62 @@ nav {
 <section class="software reveal">
   <p class="sec-label">관리 소프트웨어</p>
   <h2 class="sec-title">완벽한<br><em>소재 관리</em></h2>
-  <div class="sw-grid">
-    <div class="sw-card">
-      <img class="sw-img"
-        src="./img/software/metus.png"
-        alt="Metus MAM">
-      <div>
-        <div class="sw-name">Metus MAM</div>
-        <div class="sw-desc">모든 영상 소재를 완벽하게 관리하고 백업합니다. 방송 환경에 최적화된 미디어 자산 관리 시스템.</div>
-      </div>
+  <div class="mam-head">
+    <div class="mam-img">
+      <img src="./img/software/metus-mam.webp" alt="Metus MAM으로 영상 소재를 관리하는 화면" loading="lazy">
     </div>
+    <div>
+      <div class="prod-num">MEDIA ASSET MANAGEMENT</div>
+      <div class="mam-name">Metus MAM</div>
+      <p class="mam-lead">영상 소재의 등록 · 검색 · 변환 · 보호를 한곳에서 처리하는 엔터프라이즈 미디어 자산 관리(MAM) 시스템. 파일을 끌어다 놓기만 하면 등록되고, AI가 화면 속 글자와 대사, 인물을 인식해 원하는 장면을 바로 찾아줍니다.</p>
+      <div class="mam-keys">
+        <div class="mam-key"><div class="mam-key-n">AI</div><div class="mam-key-l">OCR · 음성 인식<br>얼굴 인식</div></div>
+        <div class="mam-key"><div class="mam-key-n">NLE</div><div class="mam-key-l">Premiere · EDIUS<br>Vegas 플러그인</div></div>
+        <div class="mam-key"><div class="mam-key-n">500+</div><div class="mam-key-l">전 세계<br>도입 고객사</div></div>
+      </div>
+      <a href="#contact" class="btn-primary">도입 상담 문의</a>
+    </div>
+  </div>
+  <div class="mam-grid">
+    <div class="mam-feat">
+      <div class="mam-feat-n">01</div>
+      <div class="mam-feat-t">AI 검색</div>
+      <div class="mam-feat-d">화면 속 글자(OCR), 대사(음성 인식), 얼굴과 장면을 AI가 인식합니다. 메타데이터를 일일이 입력하지 않아도 대사 · 인물 · 장면으로 찾습니다.</div>
+    </div>
+    <div class="mam-feat">
+      <div class="mam-feat-n">02</div>
+      <div class="mam-feat-t">메타데이터 · 검색</div>
+      <div class="mam-feat-d">메타데이터 항목을 제한 없이 만들고, 검색창 하나로 찾거나 조건을 조합해 검색합니다. 자주 쓰는 검색은 저장하고, 이미지로도 찾을 수 있습니다.</div>
+    </div>
+    <div class="mam-feat">
+      <div class="mam-feat-n">03</div>
+      <div class="mam-feat-t">자동 변환 · 다양한 포맷</div>
+      <div class="mam-feat-d">MXF · XDCAM · MOV · MP4 등 방송 표준 포맷과 ProRes · H.264 · AVC-Intra 등 코덱을 지원하고, 필요한 포맷으로 자동 변환합니다.</div>
+    </div>
+    <div class="mam-feat">
+      <div class="mam-feat-n">04</div>
+      <div class="mam-feat-t">편집 프로그램 연동</div>
+      <div class="mam-feat-d">Premiere Pro · EDIUS · Vegas 플러그인으로 편집 화면 안에서 바로 소재를 찾고 가져옵니다.</div>
+    </div>
+    <div class="mam-feat">
+      <div class="mam-feat-n">05</div>
+      <div class="mam-feat-t">세밀한 권한 관리</div>
+      <div class="mam-feat-d">프로젝트 · 폴더 · 파일, 메타데이터 항목 단위까지 사용자별로 재생 · 편집 · 다운로드 · 삭제 권한을 나눕니다.</div>
+    </div>
+    <div class="mam-feat">
+      <div class="mam-feat-n">06</div>
+      <div class="mam-feat-t">작업 기록 · 복구</div>
+      <div class="mam-feat-d">누가 언제 무엇을 했는지 모든 작업이 기록됩니다. 삭제는 휴지통에서 복구할 수 있고, 버전 관리로 변경 내역을 되돌립니다.</div>
+    </div>
+  </div>
+  <div class="mam-uses">
+    <span class="mam-uses-l">활용 분야</span>
+    <span class="prod-tag">방송국</span>
+    <span class="prod-tag">기업 · 공공 · 교육</span>
+    <span class="prod-tag">의료 (DICOM · HL7)</span>
+    <span class="prod-tag">후반 작업</span>
+    <span class="prod-tag">뉴스 · 미디어 모니터링</span>
+    <span class="prod-tag">통신 · IPTV</span>
   </div>
 </section>
 
