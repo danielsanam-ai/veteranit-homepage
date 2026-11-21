@@ -440,64 +440,11 @@ section { position: relative; overflow: hidden; }
   justify-content: space-between;
   margin-bottom: 60px;
 }
-.products-grid {
-  display: grid;
-  grid-template-columns: repeat(3,1fr);
-  gap: 2px;
-}
-.prod-card {
-  background: var(--bg2);
-  border: 1px solid var(--border);
-  padding: 40px 32px;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  transition: background .25s, border-color .25s;
-  position: relative;
-  overflow: hidden;
-}
-.prod-card::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 2px;
-  background: var(--cyan);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform .3s ease;
-}
-.prod-card:hover::before { transform: scaleX(1); }
-.prod-card:hover { background: var(--bg3); border-color: var(--cyan); }
-.prod-img {
-  width: 100%;
-  height: 160px;
-  object-fit: contain;
-  filter: brightness(0.9);
-  margin-bottom: 8px;
-}
 .prod-num {
   font-family: var(--ff-mono);
   font-size: 10px;
   letter-spacing: 0.2em;
   color: rgba(255,255,255,0.2);
-}
-.prod-name {
-  font-family: var(--ff-head);
-  font-size: 22px;
-  line-height: 1.2;
-}
-.prod-desc {
-  font-size: 12.5px;
-  font-weight: 300;
-  line-height: 1.8;
-  color: var(--gray);
-  flex: 1;
-}
-.prod-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  margin-top: 8px;
 }
 .prod-tag {
   font-family: var(--ff-mono);
@@ -606,6 +553,51 @@ section { position: relative; overflow: hidden; }
 }
 @media (max-width: 560px) {
   .lib-grid { grid-template-columns: 1fr; }
+}
+
+.prod-group-h {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  margin: 0 0 20px;
+  font-size: 15px;
+  font-weight: 500;
+}
+.prod-group-h span {
+  font-family: var(--ff-mono);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  color: var(--cyan);
+}
+.prod-group + .prod-group { margin-top: 56px; }
+.products .lib-card .lib-desc { min-height: 92px; }
+.lib-grid.two { grid-template-columns: repeat(2, 1fr); }
+.lib-grid.two .lib-desc { min-height: 46px; }
+.spec-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  margin-top: 56px;
+}
+.spec-row.two { grid-template-columns: repeat(2, 1fr); margin-top: 0; border-top: none; }
+.spec-cell { padding: 24px 28px 24px 0; }
+.spec-cell + .spec-cell { padding-left: 28px; border-left: 1px solid var(--border); }
+.spec-cell-t {
+  font-family: var(--ff-mono);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--cyan);
+  margin-bottom: 8px;
+}
+.spec-cell-d { font-size: 12.5px; font-weight: 300; line-height: 1.8; color: var(--gray); }
+.spec-cell-d b { color: var(--white); font-weight: 500; }
+@media (max-width: 900px) {
+  .spec-row, .spec-row.two { grid-template-columns: 1fr; }
+  .spec-cell + .spec-cell { padding-left: 0; border-left: none; border-top: 1px solid var(--border); }
+}
+@media (max-width: 560px) {
+  .lib-grid.two { grid-template-columns: 1fr; }
 }
 
 /* ═══════════════════════════════
@@ -1114,7 +1106,6 @@ footer {
   .hero-stats { grid-template-columns: repeat(2,1fr); }
   .about, .solution-grid, .contact { grid-template-columns: 1fr; gap: 48px; padding: 80px 28px; }
   .products { padding: 80px 28px; }
-  .products-grid { grid-template-columns: 1fr; }
   .products-header { flex-direction: column; align-items: flex-start; gap: 24px; }
   .delivery-grid { grid-template-columns: repeat(2,1fr); }
   .software { padding: 80px 28px; }
@@ -1328,49 +1319,120 @@ nav {
     <div>
       <p class="sec-label">제품 라인업</p>
       <h2 class="sec-title">SymplyPRO<br><em>LTO Series</em></h2>
+      <p class="sec-desc">작업실 책상 위 데스크탑부터 서버 랙까지. LTO-7부터 LTO-10까지, 필요한 연결 방식과 드라이브 수에 맞춰 고릅니다.</p>
     </div>
     <a href="#contact" class="btn-ghost">제품 상담 문의 →</a>
   </div>
-  <div class="products-grid">
-    <div class="prod-card">
-      <img class="prod-img"
-        src="./img/products/symplypro-thunderbolt.png"
-        alt="SymplyPRO Thunderbolt LTO">
-      <div class="prod-num">01 / DESKTOP</div>
-      <div class="prod-name">SymplyPRO<br>Thunderbolt</div>
-      <div class="prod-desc">크리에이터를 위해 처음부터 새롭게 설계. Thunderbolt™ 3 포트 2개, 데이지 체이닝 지원. 컴팩트하고 견고한 올메탈 디자인.</div>
-      <div class="prod-tags">
-        <span class="prod-tag">Thunderbolt 3</span>
-        <span class="prod-tag">SAS</span>
-        <span class="prod-tag">LTO-7~10</span>
-      </div>
+
+  <div class="prod-group">
+    <div class="prod-group-h"><span>DESKTOP</span>데스크탑 드라이브</div>
+    <div class="lib-grid">
+    <div class="lib-card">
+      <div class="lib-img"><img src="./img/products/pro-desktop.webp" alt="SymplyPRO 데스크탑 LTO 드라이브" loading="lazy"></div>
+      <div class="prod-num">DESKTOP · HALF-HEIGHT</div>
+      <div class="lib-name">PRO</div>
+      <p class="lib-desc">책상 위에 두고 쓰는 기본형. 컴팩트한 올메탈 케이스에 하프하이트 드라이브 1대를 담았습니다.</p>
+      <dl class="lib-spec">
+        <div><dt>드라이브</dt><dd>하프하이트 1대</dd></div>
+        <div><dt>LTO</dt><dd>LTO-7 · 8 · 9</dd></div>
+        <div><dt>연결</dt><dd>Thunderbolt · SAS</dd></div>
+      </dl>
     </div>
-    <div class="prod-card">
-      <img class="prod-img"
-        src="./img/products/symplypro-rack.png"
-        alt="SymplyPRO LTO 드라이브">
-      <div class="prod-num">02 / RACKMOUNT</div>
-      <div class="prod-name">SymplyPRO<br>Rack Drive</div>
-      <div class="prod-desc">Thunderbolt, Ethernet, SAS 연결 지원. 하프 하이트 및 풀 하이트 폼 팩터 모두 지원. AES-256 하드웨어 암호화 내장.</div>
-      <div class="prod-tags">
-        <span class="prod-tag">Ethernet</span>
-        <span class="prod-tag">AES-256</span>
-        <span class="prod-tag">WORM</span>
-      </div>
+    <div class="lib-card">
+      <div class="lib-img"><img src="./img/products/pro-xth.webp" alt="SymplyPRO XTH 듀얼 드라이브 데스크탑 LTO" loading="lazy"></div>
+      <div class="prod-num">DESKTOP · DUAL</div>
+      <div class="lib-name">PRO XTH</div>
+      <p class="lib-desc">하프하이트 드라이브를 최대 2대까지. 케이블 없는 내부 구조라 드라이브 교체 · 추가가 쉽습니다.</p>
+      <dl class="lib-spec">
+        <div><dt>드라이브</dt><dd>하프하이트 1~2대</dd></div>
+        <div><dt>LTO</dt><dd>LTO-7 · 8 · 9</dd></div>
+        <div><dt>연결</dt><dd>Thunderbolt · Ethernet · SAS</dd></div>
+      </dl>
     </div>
-    <div class="prod-card">
-      <img class="prod-img"
-        src="./img/products/2u-rack.png"
-        alt="2U Rack LTO">
-      <div class="prod-num">03 / ENTERPRISE</div>
-      <div class="prod-name">2RU LTO<br>Rack System</div>
-      <div class="prod-desc">엔터프라이즈급 2U 랙마운트 LTO 드라이브 시스템. 대규모 데이터센터 환경에 최적화된 고밀도 스토리지 솔루션.</div>
-      <div class="prod-tags">
-        <span class="prod-tag">2U Rack</span>
-        <span class="prod-tag">Enterprise</span>
-        <span class="prod-tag">High Density</span>
-      </div>
+    <div class="lib-card">
+      <div class="lib-img"><img src="./img/products/pro-xtf.webp" alt="SymplyPRO XTF 풀하이트 데스크탑 LTO-10 드라이브" loading="lazy"></div>
+      <div class="prod-num">DESKTOP · FULL-HEIGHT</div>
+      <div class="lib-name">PRO XTF</div>
+      <p class="lib-desc">풀하이트 드라이브로 LTO-10까지. 테이프 1개 최대 40TB, 400MB/s의 최상위 데스크탑 모델입니다.</p>
+      <dl class="lib-spec">
+        <div><dt>드라이브</dt><dd>풀하이트 1대</dd></div>
+        <div><dt>LTO</dt><dd>LTO-9 · 10</dd></div>
+        <div><dt>연결</dt><dd>Thunderbolt · Ethernet · SAS</dd></div>
+      </dl>
     </div>
+    <div class="lib-card">
+      <div class="lib-img"><img src="./img/products/pro-dit.webp" alt="SymplyPRO DIT Thunderbolt 촬영 현장용 LTO 드라이브" loading="lazy"></div>
+      <div class="prod-num">DESKTOP · ON-SET</div>
+      <div class="lib-name">PRO DIT</div>
+      <p class="lib-desc">촬영 현장(DIT)용. 전면 독에 2.5인치 SSD나 Atomos 캐디를 꽂아 인제스트 → 검증 → 테이프 기록을 한 대로 처리합니다.</p>
+      <dl class="lib-spec">
+        <div><dt>드라이브</dt><dd>하프하이트 1~2대<br>또는 풀하이트 1대</dd></div>
+        <div><dt>LTO</dt><dd>LTO-7 ~ 10</dd></div>
+        <div><dt>연결</dt><dd>Thunderbolt</dd></div>
+      </dl>
+    </div>
+    </div>
+  </div>
+
+  <div class="prod-group">
+    <div class="prod-group-h"><span>RACKMOUNT</span>랙마운트 드라이브</div>
+    <div class="lib-grid two">
+    <div class="lib-card">
+      <div class="lib-img"><img src="./img/products/rack-1u.webp" alt="SymplyPRO 1U 랙마운트 LTO 드라이브" loading="lazy"></div>
+      <div class="prod-num">RACKMOUNT · 1U</div>
+      <div class="lib-name">PRO 1U</div>
+      <p class="lib-desc">1U 공간에 하프하이트 드라이브 2대까지. 서버실 · 기계실 랙에 바로 장착합니다(랙 키트 포함).</p>
+      <dl class="lib-spec">
+        <div><dt>드라이브</dt><dd>하프하이트 1~2대</dd></div>
+        <div><dt>LTO</dt><dd>LTO-7 · 8 · 9</dd></div>
+        <div><dt>연결</dt><dd>Thunderbolt · Ethernet · SAS</dd></div>
+      </dl>
+    </div>
+    <div class="lib-card">
+      <div class="lib-img"><img src="./img/products/rack-2u.webp" alt="SymplyPRO 2U 랙마운트 LTO 드라이브" loading="lazy"></div>
+      <div class="prod-num">RACKMOUNT · 2U</div>
+      <div class="lib-name">PRO 2U</div>
+      <p class="lib-desc">2U 공간에 풀하이트 드라이브 2대까지. LTO-10을 지원하는 Gen2 모델로 대용량 아카이브 처리량을 높입니다.</p>
+      <dl class="lib-spec">
+        <div><dt>드라이브</dt><dd>풀하이트 1~2대</dd></div>
+        <div><dt>LTO</dt><dd>LTO-9 · 10 (Gen2)</dd></div>
+        <div><dt>연결</dt><dd>Thunderbolt · Ethernet · SAS</dd></div>
+      </dl>
+    </div>
+    </div>
+  </div>
+
+  <div class="spec-row">
+    <div class="spec-cell">
+      <div class="spec-cell-t">Thunderbolt / USB4</div>
+      <div class="spec-cell-d">Thunderbolt 3 포트 2개(TB4 · TB5 · USB4 호환), 데이지 체인 지원. SAS 포트도 함께 있어 Thunderbolt가 없는 PC에도 연결됩니다.</div>
+    </div>
+    <div class="spec-cell">
+      <div class="spec-cell-t">Ethernet</div>
+      <div class="spec-cell-d">10GbE iSCSI 포트 2개. 네트워크로 연결해 여러 워크스테이션 · 서버에서 드라이브를 씁니다. (데스크탑은 XTH · XTF)</div>
+    </div>
+    <div class="spec-cell">
+      <div class="spec-cell-t">SAS</div>
+      <div class="spec-cell-d">12Gb SAS(SFF-8644)로 서버 · 워크스테이션의 SAS 카드에 직접 연결합니다.</div>
+    </div>
+  </div>
+  <div class="spec-row two">
+    <div class="spec-cell">
+      <div class="spec-cell-t">하프하이트 · LTO-9</div>
+      <div class="spec-cell-d">테이프 1개 <b>18TB</b> (압축 45TB) · 최대 <b>300MB/s</b></div>
+    </div>
+    <div class="spec-cell">
+      <div class="spec-cell-t">풀하이트 · LTO-10</div>
+      <div class="spec-cell-d">테이프 1개 <b>30TB</b> (압축 75TB), 엔터프라이즈 미디어 <b>40TB</b> · 최대 <b>400MB/s</b></div>
+    </div>
+  </div>
+  <div class="lib-common">
+    <span class="prod-tag">3년 어드밴스 교체 보증</span>
+    <span class="prod-tag">Hedge Canister 아카이브 SW 포함</span>
+    <span class="prod-tag">SymplyATOM2 관리 툴 무상</span>
+    <span class="prod-tag">AES-256 하드웨어 암호화</span>
+    <span class="prod-tag">LTO WORM</span>
+    <span class="prod-tag">LTFS</span>
   </div>
 </section>
 
