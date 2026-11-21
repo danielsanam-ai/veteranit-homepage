@@ -655,6 +655,27 @@ section { position: relative; overflow: hidden; }
   letter-spacing: 0.1em;
   color: rgba(255,255,255,0.6);
 }
+.del-feature { grid-column: span 2; grid-row: span 2; }
+.del-feature img { filter: brightness(0.75) saturate(0.85); }
+.del-feature:hover img { filter: brightness(0.9) saturate(0.95); }
+.del-feature .del-overlay { padding: 28px; }
+.del-tag {
+  display: inline-block;
+  font-family: var(--ff-mono);
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  color: var(--bg);
+  background: var(--cyan);
+  padding: 3px 10px;
+  margin-bottom: 10px;
+}
+.del-title {
+  font-family: var(--ff-head);
+  font-size: clamp(22px, 2.4vw, 32px);
+  line-height: 1.2;
+  margin-bottom: 4px;
+}
+.del-feature .del-label { color: rgba(255,255,255,0.8); font-size: 11px; }
 .delivery-note {
   margin-top: 24px;
   font-family: var(--ff-mono);
@@ -718,6 +739,11 @@ section { position: relative; overflow: hidden; }
   align-self: flex-start;
 }
 .form-submit:hover { background: var(--cyan2); }
+.form-submit:disabled { opacity: 0.6; cursor: wait; }
+.form-hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+.form-status { font-size: 13px; line-height: 1.7; min-height: 1.7em; }
+.form-status.ok { color: var(--cyan); }
+.form-status.err { color: #FF8A80; }
 
 /* ═══════════════════════════════
    FOOTER
@@ -939,6 +965,8 @@ footer {
   .footer-right { align-items: flex-start; }
   .delivery { padding: 80px 28px; }
   .hstat { padding: 20px 16px; }
+  .form-row { grid-template-columns: 1fr; }
+  .field input, .field textarea { min-width: 0; width: 100%; }
 }
 
 /* ═══════════════════════════════
@@ -1066,7 +1094,7 @@ nav {
   <div class="hero-right">
     <div class="hero-img-wrap">
       <span class="hero-img-tag">// LTO DRIVE SYSTEM</span>
-      <img src="https://static.wixstatic.com/media/031104_5a9c8d21364340b490d8dd7ef70c1159~mv2.png/v1/fill/w_531,h_182,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/symply_pro-lto_1280x1280_edited.png"
+      <img src="./img/products/symplypro-thunderbolt.png"
            alt="SymplyPRO LTO 드라이브">
     </div>
   </div>
@@ -1077,8 +1105,8 @@ nav {
       <div class="hstat-l">최신 규격 지원</div>
     </div>
     <div class="hstat">
-      <div class="hstat-n">18TB</div>
-      <div class="hstat-l">테이프 1개 용량</div>
+      <div class="hstat-n">30TB</div>
+      <div class="hstat-l">LTO-10 테이프 1개 용량</div>
     </div>
     <div class="hstat">
       <div class="hstat-n">3-2-1</div>
@@ -1139,12 +1167,12 @@ nav {
       <p class="sec-label">제품 라인업</p>
       <h2 class="sec-title">SymplyPRO<br><em>LTO Series</em></h2>
     </div>
-    <a href="https://www.veteranit.co.kr/s-projects-side-by-side" class="btn-ghost" target="_top">전체 보기 →</a>
+    <a href="#contact" class="btn-ghost">제품 상담 문의 →</a>
   </div>
   <div class="products-grid">
     <div class="prod-card">
       <img class="prod-img"
-        src="https://static.wixstatic.com/media/031104_5a9c8d21364340b490d8dd7ef70c1159~mv2.png/v1/fill/w_531,h_182,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/symply_pro-lto_1280x1280_edited.png"
+        src="./img/products/symplypro-thunderbolt.png"
         alt="SymplyPRO Thunderbolt LTO">
       <div class="prod-num">01 / DESKTOP</div>
       <div class="prod-name">SymplyPRO<br>Thunderbolt</div>
@@ -1157,7 +1185,7 @@ nav {
     </div>
     <div class="prod-card">
       <img class="prod-img"
-        src="https://static.wixstatic.com/media/031104_339527b6bc55419b9c68183e348be03e~mv2.png/v1/fill/w_600,h_85,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/20260415_185349_edited.png"
+        src="./img/products/symplypro-rack.png"
         alt="SymplyPRO LTO 드라이브">
       <div class="prod-num">02 / RACKMOUNT</div>
       <div class="prod-name">SymplyPRO<br>Rack Drive</div>
@@ -1170,7 +1198,7 @@ nav {
     </div>
     <div class="prod-card">
       <img class="prod-img"
-        src="https://static.wixstatic.com/media/031104_6e1d1fb5e0a9428dbee400cbf3c49bf5~mv2.png/v1/fill/w_600,h_148,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/2U-rack.png"
+        src="./img/products/2u-rack.png"
         alt="2U Rack LTO">
       <div class="prod-num">03 / ENTERPRISE</div>
       <div class="prod-name">2RU LTO<br>Rack System</div>
@@ -1190,7 +1218,7 @@ nav {
   <h2 class="sec-title">왜 LTO<br><em>테이프인가?</em></h2>
   <div class="solution-grid">
     <div class="solution-img">
-      <img src="https://static.wixstatic.com/media/031104_c81b959e112546b0bf7cc43568bf119c~mv2.jpg/v1/fill/w_600,h_339,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/031104_c81b959e112546b0bf7cc43568bf119c~mv2.jpg"
+      <img src="./img/solution/lto-capacity.jpg"
            alt="LTO 용량 비교">
     </div>
     <div class="solution-points">
@@ -1233,7 +1261,7 @@ nav {
   <div class="sw-grid">
     <div class="sw-card">
       <img class="sw-img"
-        src="https://static.wixstatic.com/media/031104_0ba1084e546143f09ae246ffa38c95cf~mv2.png/v1/fill/w_600,h_428,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/yoyotta.png"
+        src="./img/software/yoyotta.png"
         alt="YoYotta">
       <div>
         <div class="sw-name">YoYotta</div>
@@ -1242,7 +1270,7 @@ nav {
     </div>
     <div class="sw-card">
       <img class="sw-img"
-        src="https://static.wixstatic.com/media/031104_f73cc2da6f864676811f315b67e27176~mv2.png/v1/fill/w_600,h_320,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/metus.png"
+        src="./img/software/metus.png"
         alt="Metus MAM">
       <div>
         <div class="sw-name">Metus MAM</div>
@@ -1257,8 +1285,8 @@ nav {
   <div class="tv-header">
     <div>
       <p class="sec-label">자체 개발 소프트웨어</p>
-      <h2 class="sec-title">TapeVault<br><em>v1.0.0</em></h2>
-      <p class="sec-desc">베테랑아이티가 직접 개발한 Windows 전용 LTO 테이프 아카이브 관리 솔루션. 복잡한 테이프 관리를 직관적인 GUI로 간편하게.</p>
+      <h2 class="sec-title">TapeVault<br><em>LTO Archive</em></h2>
+      <p class="sec-desc">베테랑아이티가 직접 개발한 Windows · macOS용 LTO 테이프 아카이브 관리 솔루션. 복잡한 테이프 관리를 직관적인 GUI로 간편하게.</p>
     </div>
     <a href="https://danielsanam-ai.github.io/tapevault" class="btn-primary" target="_top" style="align-self:flex-start;white-space:nowrap;">공식 홈페이지 →</a>
   </div>
@@ -1271,8 +1299,8 @@ nav {
   <div class="tv-grid">
     <div class="tv-feature">
       <div class="tv-icon">📼</div>
-      <div class="tv-feat-title">LTO 멀티 드라이브 지원</div>
-      <div class="tv-feat-desc">LTO-4부터 LTO-9까지 단일 드라이브 완벽 지원. 다양한 세대의 테이프를 하나의 인터페이스로 통합 관리.</div>
+      <div class="tv-feat-title">LTO 드라이브 자동 인식</div>
+      <div class="tv-feat-desc">LTO-5부터 LTO-9까지 LTFS 드라이브를 자동으로 인식. 기록 · 검증 · 꺼내기를 하나의 화면에서 처리합니다.</div>
     </div>
     <div class="tv-feature">
       <div class="tv-icon">🖼️</div>
@@ -1286,8 +1314,8 @@ nav {
     </div>
     <div class="tv-feature">
       <div class="tv-icon">💻</div>
-      <div class="tv-feat-title">Windows 전용 데스크탑 앱</div>
-      <div class="tv-feat-desc">Electron + Python 기반 네이티브 앱. 별도 서버 없이 Windows PC에서 바로 실행. 설치 즉시 사용 가능.</div>
+      <div class="tv-feat-title">Windows · macOS 데스크탑 앱</div>
+      <div class="tv-feat-desc">별도 서버 없이 Windows PC와 Mac에서 바로 실행. 설치 즉시 사용 가능.</div>
     </div>
     <div class="tv-feature">
       <div class="tv-icon">📁</div>
@@ -1296,8 +1324,8 @@ nav {
     </div>
     <div class="tv-feature">
       <div class="tv-icon">☁️</div>
-      <div class="tv-feat-title">AutoLoader 지원 (Pro)</div>
-      <div class="tv-feat-desc">자동 테이프 교환장치(AutoLoader) 연동 지원. 대용량 아카이브 자동화로 운영 효율 극대화.</div>
+      <div class="tv-feat-title">AutoLoader · 라이브러리 지원</div>
+      <div class="tv-feat-desc">테이프 오토로더 · 라이브러리 제어 지원(상위 플랜). 드라이브 수 제한 없이 대용량 아카이브를 자동화합니다.</div>
     </div>
   </div>
 </section>
@@ -1307,24 +1335,34 @@ nav {
   <p class="sec-label">납품 실적</p>
   <h2 class="sec-title">현장에서<br><em>검증된</em> 솔루션</h2>
   <div class="delivery-grid">
+    <div class="del-item del-feature">
+      <img src="./img/delivery/muhyeongwon-2026.jpg" alt="한국무형원 납품 - SymplyPRO LTO 드라이브와 TapeVault 아카이브 시스템">
+      <div class="del-overlay">
+        <div>
+          <span class="del-tag">NEW · 2026</span>
+          <div class="del-title">한국무형원</div>
+          <span class="del-label">SymplyPRO LTO 드라이브 + TapeVault 아카이브 구축</span>
+        </div>
+      </div>
+    </div>
     <div class="del-item">
-      <img src="https://static.wixstatic.com/media/031104_c2065759b2294963b9f36daa565311db~mv2.jpg/v1/fill/w_143,h_142,q_90,enc_avif,quality_auto/031104_c2065759b2294963b9f36daa565311db~mv2.jpg" alt="납품사례 1">
+      <img src="./img/delivery/case-01.jpg" alt="납품사례 1">
       <div class="del-overlay"><span class="del-label">납품 사례 01</span></div>
     </div>
     <div class="del-item">
-      <img src="https://static.wixstatic.com/media/031104_c7b8f02702e54fd0a806df2ba75b37cb~mv2.jpg/v1/fill/w_142,h_142,q_90,enc_avif,quality_auto/031104_c7b8f02702e54fd0a806df2ba75b37cb~mv2.jpg" alt="납품사례 2">
+      <img src="./img/delivery/case-02.jpg" alt="납품사례 2">
       <div class="del-overlay"><span class="del-label">납품 사례 02</span></div>
     </div>
     <div class="del-item">
-      <img src="https://static.wixstatic.com/media/031104_7a815e0fe30c4b78a435df41f92904c9~mv2.jpg/v1/fill/w_142,h_142,fp_0.71_0.35,q_90,enc_avif,quality_auto/031104_7a815e0fe30c4b78a435df41f92904c9~mv2.jpg" alt="납품사례 3">
+      <img src="./img/delivery/case-03.jpg" alt="납품사례 3">
       <div class="del-overlay"><span class="del-label">납품 사례 03</span></div>
     </div>
     <div class="del-item">
-      <img src="https://static.wixstatic.com/media/031104_b838172581d743d790f9b431090e07d3~mv2.jpg/v1/fill/w_127,h_127,q_90,enc_avif,quality_auto/031104_b838172581d743d790f9b431090e07d3~mv2.jpg" alt="납품사례 4">
+      <img src="./img/delivery/case-04.jpg" alt="납품사례 4">
       <div class="del-overlay"><span class="del-label">납품 사례 04</span></div>
     </div>
   </div>
-  <p class="delivery-note">※ 고객사 정보는 보안 정책에 따라 비공개로 관리됩니다. 납품 레퍼런스가 필요하신 경우 직접 문의해 주세요.</p>
+  <p class="delivery-note">※ 일부 고객사는 보안 정책에 따라 비공개로 표기합니다. 납품 레퍼런스가 필요하신 경우 직접 문의해 주세요.</p>
 </section>
 
 <!-- CONTACT -->
@@ -1357,26 +1395,34 @@ nav {
       </div>
     </div>
   </div>
-  <form class="contact-form" onsubmit="return false;">
+  <form class="contact-form" novalidate>
+    <input type="text" name="_honey" class="form-hp" tabindex="-1" autocomplete="off" aria-hidden="true">
     <div class="form-row">
       <div class="field">
-        <label>이름</label>
-        <input type="text" placeholder="홍길동">
+        <label for="f-name">이름 *</label>
+        <input id="f-name" name="이름" type="text" placeholder="홍길동" required>
       </div>
       <div class="field">
-        <label>성</label>
-        <input type="text" placeholder="홍">
+        <label for="f-org">회사 · 기관</label>
+        <input id="f-org" name="회사·기관" type="text" placeholder="○○방송">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="field">
+        <label for="f-phone">연락처</label>
+        <input id="f-phone" name="연락처" type="tel" placeholder="010-0000-0000">
+      </div>
+      <div class="field">
+        <label for="f-email">이메일 *</label>
+        <input id="f-email" name="email" type="email" placeholder="hello@example.com" required>
       </div>
     </div>
     <div class="field">
-      <label>이메일</label>
-      <input type="email" placeholder="hello@example.com">
-    </div>
-    <div class="field">
-      <label>메시지</label>
-      <textarea placeholder="문의 내용을 입력해주세요..."></textarea>
+      <label for="f-msg">문의 내용 *</label>
+      <textarea id="f-msg" name="문의 내용" placeholder="도입 규모, 보관할 데이터 용량, 사용 중인 장비 등을 적어주시면 더 정확히 안내드립니다." required></textarea>
     </div>
     <button class="form-submit" type="submit">제출하기</button>
+    <p class="form-status" role="status" aria-live="polite"></p>
   </form>
 </section>
 
@@ -1411,6 +1457,45 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.1 });
 
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// Contact form -> email (FormSubmit)
+const contactForm = document.querySelector('.contact-form');
+contactForm.addEventListener('submit', async e => {
+  e.preventDefault();
+  const btn = contactForm.querySelector('.form-submit');
+  const status = contactForm.querySelector('.form-status');
+  if (!contactForm.checkValidity()) {
+    status.className = 'form-status err';
+    status.textContent = '이름, 이메일, 문의 내용을 입력해 주세요.';
+    contactForm.reportValidity();
+    return;
+  }
+  btn.disabled = true;
+  btn.textContent = '보내는 중...';
+  status.className = 'form-status';
+  status.textContent = '';
+  try {
+    const body = Object.fromEntries(new FormData(contactForm));
+    body._subject = '[베테랑아이티 홈페이지] ' + (body['회사·기관'] || body['이름']) + ' 문의';
+    body._template = 'table';
+    const res = await fetch('https://formsubmit.co/ajax/xantus@naver.com', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(body)
+    });
+    const data = await res.json().catch(() => ({}));
+    if (!res.ok || String(data.success) !== 'true') throw new Error(data.message || res.status);
+    contactForm.reset();
+    status.className = 'form-status ok';
+    status.textContent = '문의가 접수되었습니다. 확인 후 빠르게 연락드리겠습니다.';
+  } catch (err) {
+    status.className = 'form-status err';
+    status.textContent = '전송에 실패했습니다. 전화(010-3332-7346)나 이메일(xantus@naver.com)로 연락 주세요.';
+  } finally {
+    btn.disabled = false;
+    btn.textContent = '제출하기';
+  }
+});
 
 // Nav anchor scroll (iframe-safe)
 document.querySelectorAll('a[href^="#"]').forEach(a => {
