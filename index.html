@@ -510,10 +510,109 @@ section { position: relative; overflow: hidden; }
 }
 
 /* ═══════════════════════════════
+   TAPE LIBRARY
+═══════════════════════════════ */
+.library {
+  padding: 120px 60px;
+  background: var(--bg2);
+}
+.lib-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2px;
+}
+.lib-card, .lib-feature {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  transition: border-color .25s;
+}
+.lib-card:hover, .lib-feature:hover { border-color: var(--cyan); }
+.lib-card {
+  padding: 32px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.lib-img {
+  height: 130px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(ellipse at 50% 60%, rgba(150,190,255,0.16) 0%, transparent 70%);
+  margin-bottom: 8px;
+}
+.lib-img img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 10px 18px rgba(0,0,0,0.55));
+}
+.lib-name {
+  font-family: var(--ff-head);
+  font-size: 26px;
+  line-height: 1.1;
+}
+.lib-desc {
+  font-size: 12.5px;
+  font-weight: 300;
+  line-height: 1.8;
+  color: var(--gray);
+}
+.lib-card .lib-desc { min-height: 68px; }
+.lib-spec {
+  margin-top: 4px;
+  border-top: 1px solid var(--border);
+  padding-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.lib-spec div { display: grid; grid-template-columns: 64px 1fr; gap: 10px; }
+.lib-spec dt {
+  font-family: var(--ff-mono);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  color: var(--cyan);
+  padding-top: 2px;
+}
+.lib-spec dd { font-size: 12px; line-height: 1.6; color: rgba(255,255,255,0.78); }
+.lib-feature {
+  margin-top: 2px;
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 56px;
+  align-items: center;
+  padding: 44px 56px;
+}
+.lib-feature .lib-img { height: 380px; margin: 0; }
+.lib-feature .lib-name { font-size: 34px; margin: 6px 0 10px; }
+.lib-feature .lib-desc { max-width: 520px; margin-bottom: 24px; }
+.lib-feature .lib-spec { display: grid; grid-template-columns: 1fr 1fr; gap: 12px 40px; }
+.lib-common { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 32px; }
+.lib-note {
+  margin-top: 20px;
+  font-family: var(--ff-mono);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  line-height: 1.8;
+  color: rgba(255,255,255,0.3);
+}
+@media (max-width: 900px) {
+  .library { padding: 80px 28px; }
+  .lib-grid { grid-template-columns: 1fr 1fr; }
+  .lib-feature { grid-template-columns: 1fr; gap: 24px; padding: 32px 24px; }
+  .lib-feature .lib-img { height: 280px; }
+  .lib-feature .lib-spec { grid-template-columns: 1fr; }
+}
+@media (max-width: 560px) {
+  .lib-grid { grid-template-columns: 1fr; }
+}
+
+/* ═══════════════════════════════
    SOLUTION (LTO 기술 설명)
 ═══════════════════════════════ */
 .solution {
-  background: var(--bg2);
+  background: var(--bg);
   padding: 120px 60px;
 }
 .solution-grid {
@@ -578,7 +677,7 @@ section { position: relative; overflow: hidden; }
 ═══════════════════════════════ */
 .software {
   padding: 120px 60px;
-  background: var(--bg);
+  background: var(--bg2);
 }
 .sw-grid {
   display: grid;
@@ -592,11 +691,12 @@ section { position: relative; overflow: hidden; }
   gap: 28px;
   align-items: start;
   padding: 36px;
-  background: var(--bg2);
+  background: var(--bg3);
   border: 1px solid var(--border);
   transition: border-color .2s;
 }
 .sw-card:hover { border-color: var(--cyan); }
+.sw-card:only-child { grid-column: 1 / -1; }
 .sw-img {
   width: 120px;
   height: 80px;
@@ -1053,6 +1153,7 @@ nav {
   <ul class="nav-links">
     <li><a href="#about">회사소개</a></li>
     <li><a href="#products">제품</a></li>
+    <li><a href="#library">라이브러리</a></li>
     <li><a href="#solution">솔루션</a></li>
     <li><a href="#tapevault">TapeVault</a></li>
     <li><a href="#delivery">납품실적</a></li>
@@ -1212,6 +1313,87 @@ nav {
   </div>
 </section>
 
+<!-- LIBRARY -->
+<section class="library reveal" id="library">
+  <div class="products-header">
+    <div>
+      <p class="sec-label">테이프 라이브러리</p>
+      <h2 class="sec-title">SymplyPRO<br><em>XTL Library</em></h2>
+      <p class="sec-desc">테이프를 자동으로 교체하며 백업 · 아카이브를 무인으로 운영하는 LTO 자동화 장비. 1U 8슬롯부터 1,115슬롯 엔터프라이즈까지, 규모에 맞게 고르고 모듈을 더해 확장합니다.</p>
+    </div>
+    <a href="#contact" class="btn-ghost">구성 상담 문의 →</a>
+  </div>
+  <div class="lib-grid">
+    <div class="lib-card">
+      <div class="lib-img"><img src="./img/library/xtl-8.webp" alt="SymplyPRO XTL 8 1U LTO 테이프 라이브러리" loading="lazy"></div>
+      <div class="prod-num">1U · 8 SLOTS</div>
+      <div class="lib-name">XTL 8</div>
+      <p class="lib-desc">작은 공간에서 무인 백업을 시작하는 엔트리 라이브러리. 소규모 사무실 · 부서에 적합합니다.</p>
+      <dl class="lib-spec">
+        <div><dt>드라이브</dt><dd>하프하이트 1대<br>LTO-7 · 8 · 9</dd></div>
+        <div><dt>최대 용량</dt><dd>144TB (LTO-9)</dd></div>
+        <div><dt>연결</dt><dd>SAS · FC<br>iSCSI · Thunderbolt 옵션</dd></div>
+      </dl>
+    </div>
+    <div class="lib-card">
+      <div class="lib-img"><img src="./img/library/xtl-24.webp" alt="SymplyPRO XTL 24 2U LTO 테이프 라이브러리" loading="lazy"></div>
+      <div class="prod-num">2U · 24 SLOTS</div>
+      <div class="lib-name">XTL 24</div>
+      <p class="lib-desc">야간 무인 백업에 맞춘 컴팩트 2U 라이브러리. 부서 · 지사 단위 백업과 아카이브에.</p>
+      <dl class="lib-spec">
+        <div><dt>드라이브</dt><dd>하프하이트 1~2대</dd></div>
+        <div><dt>최대 용량</dt><dd>432TB (LTO-9)</dd></div>
+        <div><dt>연결</dt><dd>SAS · FC<br>iSCSI · Thunderbolt 옵션</dd></div>
+      </dl>
+    </div>
+    <div class="lib-card">
+      <div class="lib-img"><img src="./img/library/xtl-40.webp" alt="SymplyPRO XTL 40 3U 모듈형 LTO 테이프 라이브러리" loading="lazy"></div>
+      <div class="prod-num">3U · 40 SLOTS · MODULAR</div>
+      <div class="lib-name">XTL 40</div>
+      <p class="lib-desc">모듈을 쌓아 최대 640슬롯까지 늘리는 모듈형 라이브러리. 작게 시작해 필요한 만큼 확장합니다.</p>
+      <dl class="lib-spec">
+        <div><dt>드라이브</dt><dd>모듈당 하프하이트 3대<br>또는 풀하이트 1대</dd></div>
+        <div><dt>최대 용량</dt><dd>모듈당 1.6PB<br>최대 25.6PB *</dd></div>
+        <div><dt>연결</dt><dd>SAS · FC<br>iSCSI · Thunderbolt</dd></div>
+      </dl>
+    </div>
+    <div class="lib-card">
+      <div class="lib-img"><img src="./img/library/xtl-80.webp" alt="SymplyPRO XTL 80 6U 모듈형 LTO 테이프 라이브러리" loading="lazy"></div>
+      <div class="prod-num">6U · 80 SLOTS · MODULAR</div>
+      <div class="lib-name">XTL 80</div>
+      <p class="lib-desc">42U 랙 하나에 최대 560슬롯. 드라이브와 용량을 함께 늘리는 엔터프라이즈 모듈형 라이브러리.</p>
+      <dl class="lib-spec">
+        <div><dt>드라이브</dt><dd>모듈당 하프하이트 6대<br>또는 풀하이트 3대</dd></div>
+        <div><dt>최대 용량</dt><dd>모듈당 3.2PB<br>최대 22.4PB *</dd></div>
+        <div><dt>연결</dt><dd>SAS · FC<br>iSCSI · Thunderbolt</dd></div>
+      </dl>
+    </div>
+  </div>
+  <div class="lib-feature">
+    <div class="lib-img"><img src="./img/library/matterhorn.webp" alt="Symply MATTERHORN 엔터프라이즈 LTO 테이프 라이브러리" loading="lazy"></div>
+    <div>
+      <div class="prod-num">42U · 48U · ENTERPRISE</div>
+      <div class="lib-name">MATTERHORN</div>
+      <p class="lib-desc">방송국 · 데이터센터 · 공공기관의 대규모 아카이브를 위한 엔터프라이즈 라이브러리. 차세대 LTO까지 고려한 풀하이트 드라이브 구성.</p>
+      <dl class="lib-spec">
+        <div><dt>슬롯</dt><dd>최대 1,115슬롯 (48U)</dd></div>
+        <div><dt>드라이브</dt><dd>풀하이트 최대 24대<br>LTO-8 · 9 · 10</dd></div>
+        <div><dt>최대 용량</dt><dd>44.6PB *</dd></div>
+        <div><dt>연결</dt><dd>SAS · Fibre Channel</dd></div>
+      </dl>
+    </div>
+  </div>
+  <div class="lib-common">
+    <span class="prod-tag">모든 슬롯 기본 활성 · 추가 라이선스 없음</span>
+    <span class="prod-tag">AES-256 하드웨어 암호화</span>
+    <span class="prod-tag">LTO WORM</span>
+    <span class="prod-tag">LTFS</span>
+    <span class="prod-tag">웹 원격 관리</span>
+    <span class="prod-tag">3년 보증</span>
+  </div>
+  <p class="lib-note">* LTO-10 40TB 미디어 기준 비압축 용량. 사양은 제조사(Symply) 기준이며 구성에 따라 달라질 수 있습니다.<br>Veeam · Commvault · Archiware P5 · Hedge Canister 등 주요 백업 · 아카이브 소프트웨어와 호환됩니다.</p>
+</section>
+
 <!-- SOLUTION -->
 <section class="solution reveal" id="solution">
   <p class="sec-label">LTO 기술</p>
@@ -1259,15 +1441,6 @@ nav {
   <p class="sec-label">관리 소프트웨어</p>
   <h2 class="sec-title">완벽한<br><em>소재 관리</em></h2>
   <div class="sw-grid">
-    <div class="sw-card">
-      <img class="sw-img"
-        src="./img/software/yoyotta.png"
-        alt="YoYotta">
-      <div>
-        <div class="sw-name">YoYotta</div>
-        <div class="sw-desc">LTO-5~10 테이프를 제어·관리하는 전문 툴. 저장된 모든 내용의 검색과 리스토어를 위한 브라우징 및 검색 기능을 제공합니다.</div>
-      </div>
-    </div>
     <div class="sw-card">
       <img class="sw-img"
         src="./img/software/metus.png"
@@ -1439,6 +1612,7 @@ nav {
     <ul class="footer-links">
       <li><a href="#about" target="_top">회사소개</a></li>
       <li><a href="#products" target="_top">제품</a></li>
+      <li><a href="#library" target="_top">라이브러리</a></li>
       <li><a href="#solution" target="_top">솔루션</a></li>
       <li><a href="#contact" target="_top">문의</a></li>
     </ul>
